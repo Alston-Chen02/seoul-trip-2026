@@ -1,0 +1,28 @@
+name: Update Bank of Taiwan KRW rate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: write
+  pages: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh official quotation
+        run: python3 update-rate.py
+      - name: Save quotation status
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add rate.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update official KRW quotation status"
+            git push
+          fi
+      - name: Rebuild Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
