@@ -3,7 +3,7 @@
   "kind": "韓元現金賣出",
   "rate": 0.02648,
   "publishedAt": "2026-10-16T14:35:00+08:00",
-  "checkedAt": "2026-10-23T13:32:16.330904+00:00",
+  "checkedAt": "2026-10-23T18:26:24.853692+00:00",
   "status": "error",
   "sourceUrl": "https://rate.bot.com.tw/xrt?Lang=zh-TW",
   "note": "官方資料擷取失敗，保留上次報價；請開啟台銀官網核對。"
